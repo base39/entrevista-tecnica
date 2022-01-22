@@ -1,6 +1,7 @@
 import express from 'express'
 import { router } from './router'
 import cors from 'cors'
+import 'reflect-metadata'
 
 export class App {
   public server: express.Application
