@@ -1,3 +1,6 @@
-import { App } from './app'
+import { Application } from './system/core/Application'
+import 'reflect-metadata'
 
-new App().server.listen(3000)
+Application.instance(__dirname).then((app) => {
+  app.httpServer()
+})
