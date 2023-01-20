@@ -1,4 +1,5 @@
 import { model, Schema, ObjectId } from 'mongoose'
+import { parseMenu } from '../utils/menu-aggregation'
 
 export interface MenuModel {
   _id?: ObjectId
@@ -16,5 +17,7 @@ const schema = new Schema<MenuModel>({
     ref: 'Menu',
   },
 })
+
+schema.post('aggregate', parseMenu)
 
 export default model<MenuModel>('menu', schema, 'menus')

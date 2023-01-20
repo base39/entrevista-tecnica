@@ -1,25 +1,6 @@
 import { Request, Response } from 'express'
-import { MenuTreeItem } from '../models/menu-tree-item'
-import Menu, { MenuModel } from '../models/menu'
-
-async function populateChildrenMenus(menu: MenuModel): Promise<MenuTreeItem> {
-  const menuItem = MenuTreeItem.fromModel(menu)
-  const childrenMenus = await Menu.find({ relatedId: menu._id })
-
-  if (childrenMenus.length) {
-    menuItem.submenus = await Promise.all(
-      childrenMenus.map(childrenMenu => populateChildrenMenus(childrenMenu)),
-    )
-  }
-
-  return menuItem
-}
-
-async function getMenuTree(): Promise<MenuTreeItem[]> {
-  const rootMenus = await Menu.find({ relatedId: { $exists: false } })
-
-  return await Promise.all(rootMenus.map(rootMenu => populateChildrenMenus(rootMenu)))
-}
+import Menu from '../models/menu'
+import { buildTreeQuery } from '../utils/menu-aggregation'
 
 export default {
   create: async (req: Request, res: Response): Promise<Response> => {
@@ -35,7 +16,7 @@ export default {
     return res.json(menu)
   },
   getMenus: async (_: Request, res: Response): Promise<Response> => {
-    const menu = await getMenuTree()
+    const menu = await Menu.aggregate(buildTreeQuery)
 
     return res.json(menu)
   },
