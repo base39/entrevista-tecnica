@@ -2,23 +2,19 @@ import { Request, Response } from 'express'
 import { MenuTreeItem } from '../models/menu-tree-item'
 import Menu, { MenuModel } from '../models/menu'
 
-async function populateChildrenMenus(menu: MenuModel): Promise<MenuTreeItem> {
-  const menuItem = MenuTreeItem.fromModel(menu)
-  const childrenMenus = await Menu.find({ relatedId: menu._id })
-
-  if (childrenMenus.length) {
-    menuItem.submenus = await Promise.all(
-      childrenMenus.map(childrenMenu => populateChildrenMenus(childrenMenu)),
-    )
-  }
-
-  return menuItem
+function populateChildrenMenus(menus: MenuModel[], relatedId?: string): MenuTreeItem[] {
+  return menus
+    .filter(menu => menu.relatedId?.toString() === relatedId)
+    .map(menu => ({
+      id: menu._id!.toString(),
+      nome: menu.name,
+      submenus: populateChildrenMenus(menus, menu._id!.toString()),
+    }))
 }
 
 async function getMenuTree(): Promise<MenuTreeItem[]> {
-  const rootMenus = await Menu.find({ relatedId: { $exists: false } })
-
-  return await Promise.all(rootMenus.map(rootMenu => populateChildrenMenus(rootMenu)))
+  const allMenus = await Menu.find()
+  return populateChildrenMenus(allMenus)
 }
 
 export default {
