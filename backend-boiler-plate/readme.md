@@ -1,19 +1,37 @@
-# Como configurar o projeto?
-- Certifique-se que tem as dependências [npm](https://www.npmjs.com/) (>= 6.x) e [Node.js](https://nodejs.org/) (>= 14.x) instaladas localmente.
-- Este projeto utiliza Node.js com [Typescript](https://www.typescriptlang.org/).
-- Tenha uma conexão com um banco de dados [MongoDB](https://www.mongodb.com/).
-- Disponibilizamos duais coleções prontas localizadas na pasta `/api_clients` para importar no [Insomnia](https://insomnia.rest/) e no [Postman](https://www.postman.com/) para realizar os testes, porém sinta-se à vontade para utilizar qualquer plataforma de cliente de API que preferir.
-- Crie um arquivo `.env` na raíz do projeto e copie os conteúdos do arquivo `.env.example`. Qualquer variável de ambiente utilizada deve ser declarada neste arquivo e chamada no projeto através do comando `process.env` (ex. `process.env.MONGO_URL`).
-- Preencha a URL de conexão ao seu banco do MongoDB na primeira linha o arquivo `.env`.
-- Na raíz, instale o restante das dependências do projeto através do comando `npm install`.
-- Inicialize o projeto através do comando `npm run start`.
-- O projeto utiliza o [Nodemon](https://nodemon.io/), logo as atualizações feitas ao código durante o desenvolvimento são automaticamente capturadas, o Typescript é re-compilado e o servidor é re-criado sem intervenção manual (com exceção às alterações no arquivo `.env`. Neste caso é preciso encerrar a execução do servidor e executar o comando `npm run start` novamente).
-- Caso tenha tudo ocorrido de acordo, o terminal deverá apresentar a seguinte saída:
-```sh
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching path(s): *.*
-[nodemon] watching extensions: ts,json
-[nodemon] starting `ts-node src/index.ts`
-⚡️[Paketá Credito Live-Coding BoilerPlate]: Server is running at https://localhost:8000
-⚡️[Paketá Credito Live-Coding BoilerPlate]: MongoDB connection established successfully
-```
+# Desafio Backend
+
+## Objetivo
+O objetivo deste desafio é avaliar os seus conhecimentos em arquitetura de código, raciocínio lógico, *clean code* e modelagem de dados.
+
+## Etapas
+
+### Etapa 1 - Ambientação
+
+Clone este repositório, leia o [guia de contribuição](./contributing.md), estude a arquitetura apresentada deste projeto e realize alguns testes nos endpoints existentes para se ambientar com o código.
+
+1. Se você optou por realizar o **Live-Coding**, certifique-se que o *backend-boiler-plate* esteja funcional no seu ambiente, pois você utilizá-lo-á na próxima etapa.
+2. Se você optou por realizar o **desafio sozinho**, você receberá um link com intruções para o mesmo. Você deve implementar os requisitos solicitados neste documento utilizando o código do *backend-boiler-plate* deste repositório, ou seja, você irá **incrementar/adicionar as funcionalidades solicitadas** ao *boiler-plate*.
+
+Independete da sua escolha, marcaremos um horário para que você possa seguir para a próxima etapa: a **entrevista**.
+
+### Etapa 2 - Entrevista
+
+1. Se você optou por realizar o **Live-Coding**, você receberá o desafio no início desta entrevista e terá aproximadamente *uma hora e meia* para concluí-lo.
+2. Se você optou por realizar o **desafio sozinho**, este será o momento em que revisaremos o mesmo. Você será questionado sobre os conceitos aplicados durante o desafio. Esta entrevista deve demorar no máximo *uma hora*.
+
+### Etapa 3 - Quadro Branco
+
+Nesta etapa, também conhecida como Design System Interview, você será convidado à falar um pouco sobre suas experiências passadas com design de soluções e arquitetura de sistemas. Também será apresentado um problema no qual candidato deverá propor o design da solução.
+
+Caso nunca tenha feito este tipo de entrevista, te aconselhamos a dar uma olhada no Youtube (Recomendação: [Exponent - System Design Interview Prep](https://www.youtube.com/channel/UCjm_qVkCPjOVDz9BWjNqO9A))
+
+Recomendamos também tire um tempo para relembrar alguns conceitos e se preparar melhor para a entrevista.
+Material Recomendado: 
+- [System Desgin Prime](https://github.com/donnemartin/system-design-primer)
+- [A Dev' Story](https://www.youtube.com/channel/UCGjZSsyZY1hce8SsGV1_IHg)
+- [Introduction to AWS Lambda & Serverless Applications](https://www.youtube.com/watch?v=EBSdyoO3goc)
+- [Designing Serverless Application on AWS](https://www.youtube.com/watch?v=s7nXSGleGwY)
+
+​
+### Final
+Após a avaliação, os seus resultados serão encaminhados de volta para a equipe técnica, e eles irão dar continuidade ao seu processo seletivo juntamente com o RH da Paketá.
